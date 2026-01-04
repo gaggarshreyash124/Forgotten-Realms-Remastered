@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4cb1bb3638479b41b0633db4d4cf94a, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  jumpForce: 15
+  jumpForce: 30
   moveSpeed: 7
   maxHealth: 100

@@ -141,9 +141,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""51fcb94e-129d-4ac0-bb69-ff23bacea16a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
+                    ""expectedControlType"": """",
+                    ""processors"": ""Scale(factor=0.51),Clamp(max=30)"",
+                    ""interactions"": ""Tap,Hold"",
                     ""initialStateCheck"": false
                 },
                 {

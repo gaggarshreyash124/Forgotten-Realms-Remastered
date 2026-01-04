@@ -5,24 +5,47 @@ public class InputHandler : MonoBehaviour
     public PlayerInput playerInput;
     public Vector2 MovementInput { get; private set; }
     public bool JumpInput { get; private set; }
+    public bool JumpInputReleased { get; private set; }
+    private float JumpInputTimer;
     void Awake()
     {
         playerInput = new PlayerInput();
-        playerInput.Enable();
-        
-        playerInput.Player.Move.performed += ctx => MovementInput = ctx.ReadValue<Vector2>();
-        playerInput.Player.Move.canceled += ctx => MovementInput = Vector2.zero;
-        playerInput.Player.Jump.performed += ctx => JumpInput = true;
-        playerInput.Player.Jump.canceled += ctx => JumpInput = false;
     }
-
-    void Update()
+    void OnEnable()
     {
+        playerInput.Enable();
     }
-
+    void OnDisable()
+    {
+        playerInput.Disable();
+    }
     public void onMovePerformed(InputAction.CallbackContext context)
     {
-        MovementInput = context.ReadValue<Vector2>();
+        if (context.performed)
+        {
+            MovementInput = context.ReadValue<Vector2>();
+        }
+        else if (context.canceled)
+        {
+            MovementInput = Vector2.zero;
+
+        }
     }
+
+    public void onJumpPerformed(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            JumpInput = true;
+        }
+        else if (context.performed)
+        {
+        }
+        else if (context.canceled)
+        {
+            JumpInput = false;
+        }
+    }
+
 
 }
