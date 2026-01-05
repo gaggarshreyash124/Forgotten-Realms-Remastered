@@ -9,6 +9,8 @@ public class EnemyBase : MonoBehaviour
     public GameObject Enemy;
     private Vector2 velocityWorkspace;
 
+    public float cooldown = 4f;
+
 
     public void Start()
     {
@@ -16,6 +18,10 @@ public class EnemyBase : MonoBehaviour
         anim=GetComponent<Animator>();
     }
 
+    public void Update()
+    {
+        
+    }
     public void flip()
     {
         facingdirection *= -1;
@@ -38,4 +44,13 @@ public class EnemyBase : MonoBehaviour
         }
     }
 #endregion
+
+    public void PLayerFollow()
+    {
+        float t = Time.time;
+        if(Time.time-t>=cooldown)
+        {
+            cooldown+=4f;
+        }
+    }
 }
