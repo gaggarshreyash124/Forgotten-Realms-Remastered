@@ -15,3 +15,7 @@ MonoBehaviour:
   jumpForce: 30
   moveSpeed: 7
   maxHealth: 100
+  groundCheckDistance: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64

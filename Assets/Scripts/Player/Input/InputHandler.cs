@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 public class InputHandler : MonoBehaviour
 {
     public PlayerInput playerInput;
     public Vector2 MovementInput { get; private set; }
-    public bool JumpInput { get; private set; }
-    public bool JumpInputReleased { get; private set; }
+    public bool JumpInput;
     private float JumpInputTimer;
+    public bool CanCayoteeJump;
     void Awake()
     {
         playerInput = new PlayerInput();
@@ -28,7 +29,6 @@ public class InputHandler : MonoBehaviour
         else if (context.canceled)
         {
             MovementInput = Vector2.zero;
-
         }
     }
 
@@ -37,15 +37,23 @@ public class InputHandler : MonoBehaviour
         if (context.started)
         {
             JumpInput = true;
+            JumpInputTimer = Time.time;
         }
         else if (context.performed)
         {
+            if (JumpInputTimer + 0.2f <= Time.time)
+            {
+                CanCayoteeJump = true;
+            }
+            else
+            {
+                CanCayoteeJump = false;
+            }
         }
         else if (context.canceled)
         {
             JumpInput = false;
         }
+
     }
-
-
 }
